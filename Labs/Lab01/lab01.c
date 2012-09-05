@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 void remChar(char* s, int index){
 	int len = strlen(s);
@@ -44,10 +45,21 @@ char* c2pascal(char* s){
 	}
 	newStr[i] = len;
 	return newStr;
-
-	return s;
 }
 char** tokenify(char* s){
-	char** temp = &s;	
-	return temp;
+	char* str = strdup(s);
+	char* temp = strtok(str, " \n\t");
+	if(temp == NULL) return NULL;	
+	int count =	0;
+	while(temp!=NULL){
+		count++;
+		temp = strtok(NULL, " \n\t");
+	}
+	char** toks = malloc((count+1)*sizeof(char));
+	toks[0] = strtok(s, " \n\t");
+	int i = 1;
+	for(;i<=count;i++){
+		toks[i] = strtok(NULL, " \n\t");
+	}
+	return toks;
 }
