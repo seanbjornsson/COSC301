@@ -1,0 +1,78 @@
+
+int avgchar(char *mystring){
+   int i = 0;  
+   int sum = 0;
+   double avg;
+   for(;i<strlen(mystring);i++){
+        sum += mystring[i];
+   }
+   avg = sum/strlen(mystring);
+return ((int)avg);
+}
+
+char charat(char *mystring, int index){
+	int temp = index;	
+	if(temp>=strlen(mystring)){
+		return -1;
+	}
+	else{
+		return mystring[temp];
+	}
+}
+
+char* upperCase(char *string){
+
+	int i = 0;
+	char *temp = strdup(string);
+	for(;i<strlen(temp);i++){
+		if(temp[i] >= 97 && temp[i] <= 122){
+			temp[i]-=32;
+		}
+	}
+	return temp;
+}
+char* string_in(char* string1, char* string2){
+	char *test1 = strdup(upperCase(string1));
+	char *test2 = strdup(upperCase(string2));
+	int i = 0;
+	int j = 0;
+	char *index = NULL;
+	for(;i<strlen(test1);i++){
+		if(test1[i] == test2[j]){
+			if(j==0){
+				index = &string1[i];
+			}
+			if(j==strlen(test2)-1){
+				return index;
+			}			
+			j++;
+		}
+		else{
+			j = 0;
+			index = NULL;
+		}
+	}
+	
+	free(test1);free(test2);
+	return index;
+}
+
+int strncmp2(char* string1, char* string2, int maxlen){
+	char *test1 = strdup(upperCase(string1));
+	char *test2 = strdup(upperCase(string2));
+	int i = 0;
+	int returnval = 0;
+	for(;i<maxlen;i++){
+		if(test1[i]!=test2[i]){
+			if(test1[i]<test2[i]){
+				returnval=-1;
+			}
+			else{
+				returnval = 1;
+			}
+		}
+	}
+	free(test1);free(test2);
+	return returnval;
+}
+

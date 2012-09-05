@@ -1,0 +1,29 @@
+Sean Bjornsson HW01
+
+1. 
+chmod 700 systems.txt
+
+2. 
+#!/bin/bash
+chmod 700 systems.txt
+ls -l
+
+chmod 777 perms.sh
+
+3.
+The dot in ./perms.sh refers to the current or working directory. We need to use ./ because in combination with perms.sh it represents the direct file path to the script. 
+
+4.
+cat systems.txt | grep x | wc -l
+
+5.
+cat systems.txt | grep -v os | wc -l
+
+6.
+ps auxww | grep `whoami` | sort -k4 -nr
+
+7.
+ps auxww | grep -v `whoami` | awk '{print $1}' | sort | uniq -c | sort -nr
+
+
+ 
