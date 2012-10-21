@@ -1,0 +1,80 @@
+Note 1: Below you will find both general questions and topic areas, as
+well as specific questions such as might be seen on the exam.  The
+questions and topic areas are given here to guide your study for the
+exam and to give you examples of the kinds of questions you may see.
+
+Note 2: Topics covered by worksheet and homework questions are also
+fair game.
+
+Note 3: C language stuff is fair game.  You should know about heap vs.
+stack allocation, pointers, structures, and strings.  You can assume
+that there will be at least 1 question in which you'll need to write a
+short C function.
+
+All topics up through memory segmentation (which we should finish by
+Friday 9/28) are in bounds to be covered.
+
+Sample questions:
+
+What are the advantages that an microkernel design has over a
+monolithic kernel? What are the disadvantages?
+
+Briefly describe what happens when a user program calls the fork()
+system call.
+
+What states can a process go through in its lifetime?  What
+transitions can a process make between those states, and under what
+circumstances (give an example)?
+
+Policy versus mechanism.  Why is their separation a good thing?
+
+What is process dispatching; what happens at dispatch?  Is this a
+policy or a mechanism (and why)?
+
+What is a cooperative approach to scheduling, and why is it
+potentially a bad idea?  What is an alternative and how does that
+solve the problems with the cooperative approach?
+
+Name and describe one example of where we saw the OS needed support
+from the hardware in order to implement some needed functionality.
+
+An operating system runs in privileged mode, a hardware state where it
+has full access to machine resources.  Why is such a mode needed, and
+why can't normal user processes and threads enter privileged mode?
+
+When a UNIX process calls fork(), the OS creates (the child) a
+nearly-identical copy of the original (parent) process.  Why is the
+copy "nearly identical" and not an exact copy of the original?
+
+In a traditional single-threaded process, we have both a stack and a
+heap.  (a) What is the stack used for?  (b) What is the heap used for?
+
+Three jobs (A, B, and C) arrive to the job scheduler at time 0.  Job A
+needs 10 seconds of CPU time, Job B needs 20 seconds, and Job C needs
+30 seconds.
+   - What is the average turnaround time for the jobs, assuming a
+     shortest-job-first (SJF) scheduling policy?
+   - What is the average turnaround time assuming a longest-job-first
+     (LJF) policy?
+   - Which finishes first, Job C in SJF or Job A in LJF?
+   
+Consider a system running ten I/O-bound tasks and one CPU-bound
+task. Assume that the I/O bound tasks issue an I/O operation once for
+every millisecond of CPU computing and that each I/O operation takes
+10 milliseconds to complete. Also assume that the context-switching
+overhead is 0.1 millisecond and that all processes are long-running
+tasks. Describe precisely the CPU utilization for a round-robin
+scheduler when the time quantum is 1 millisecond. (Writing out a
+fraction without computing the final answer is acceptable.)
+   
+Assume we divide the heap into fixed-sized units of size S. Also
+assume that we never get a request for a unit larger than S. Thus, for
+any request you receive, you will return a single block of size S, if
+you have any free blocks. What kind of fragmentation can occur in this
+situation, and why is this bad?
+
+Assume we manage a heap in a best-fit manner. What does best-fit
+management try to do? What kind of fragmentation can occur in this
+situation, and why is this bad?
+
+What advantages does segmentation have over simple dynamic relocation?

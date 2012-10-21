@@ -1,0 +1,42 @@
+worksheet 2 C code
+// here's my code for the two problems we did in class friday
+int search_by_name(struct record records[],
+                   int num_records,
+                   char *str, int start_index)
+{
+    if (num_records < 1 ||
+        str == NULL ||
+        (start_index < 0 || start_index >= num_records) ||
+        records == NULL)
+    {
+        return -1;
+    }
+    int i = start_index;
+    for (; i < num_records; i++) {
+        if (0 == strstrcase(records[i].name, str)) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int* get_matches(struct record records[],
+                 int num_records,
+                 char *str)
+{
+    int *array = malloc(sizeof(int));
+    array[0] = 0;
+
+    int match_index = 0;
+    int matches = 0;
+    while (( match_index = search_by_name(records, num_records, str, match_index)) != -1) {
+        matches += 1;
+        int *new_array = malloc(sizeof(int)*(matches + 1));
+        memcpy(new_array, array, sizeof(int) * (array[0] + 1));
+        free(array);
+        array = new_array;
+        array[matches] = match_index;
+        match_index += 1;
+    }
+    return array;
+}

@@ -1,0 +1,19 @@
+1)	a. 15. ten for page offset (1024 = 2^10) and 5 for page number (32 = 2^5)
+	b. 14. ten for page offset and four for PPN
+
+2)	a. 2^20 PTEs
+	b.128000 ptes
+
+3)	a. 400 nanoseconds
+	b. 50 nanoseconds
+
+4)	a. Yes, it will become blocked as a new page is loaded into memory from disk (I/O).
+	b. No, it will just do more memory access in that case
+	c. No
+
+5)	COW means that when a page needs to be copied to another address space, then instead of actually copying all of the information to the new place, putting a reference in the new place to the original page to be copied. now it can still access all of that information without an expensive copy. the OS tags that page that was "copied" in the new and old place as read only. if a process tries to write to the page, then the OS actually copies the page giving each process their own version. this is increadibly benificial when using fork(), becasue the entire address space is copied for a process into the new one. this is expensive, and usually the new process doesnt write over much of its address space. therefore it would make forking way faster to use COW. fork is also often used to call exec() fairly soon after forking, in which case its address space is wiped clean anyway, so copying everything would have been a waste. The hardware support necessary is a trap/interrupt to be sent when a process tries to write to a COW tagged page, and a handler in the OS to handle that.
+
+6)If 30% of the time a page fault takes 8 milliseconds, and 70% of the time a page fault takes 20 milliseconds, then on average page faults take 16.4 milliseconds. In oder to get the average mem access time down to 200 nano, a page fault must be averaged out with lots of non page faults. I worked it out in the following equation to find out how many non page faults are necessary:
+	200=(x100+16400000)/(x+1) , which yeilded 163999 as x. therefore for every 163999 non page faults there can be one page fault. so the max page fault rage is 1/164000.
+
+7).8x1microsec + .18x2microsec + .02x20millisec =401.16 microseconds
