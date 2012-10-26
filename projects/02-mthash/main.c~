@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <pthread.h>
+#include <errno.h>
+#include <time.h>
+#include <string.h>
+#include "hash.h"
+
+int main(int argc, char **argv) {
+	char str[1024];
+	int hashlength = 100;
+	hashtable_t * hash = hashtable_new(hashlength);
+	bucket * list;
+	bucket_init(list);
+	while (fgets(str, 1024, stdin) != NULL) {
+		hashtable_add(hash,str);
+		bucket_insert(str,list);
+	}
+	hashtable_print(hash);
+	struct node * temp = list->head;
+	while(list->head!=NULL){
+		hashtable_remove(hash,list->head->string);
+		list->head = list->head->next;
+	}
+	list->head = temp;
+	hashtable_print(hash);
+	return 0;
+}
